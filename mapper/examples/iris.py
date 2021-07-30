@@ -20,9 +20,13 @@ def run():
     scaler = StandardScaler()
     X = pd.DataFrame(scaler.fit_transform(X), columns=features)
 
-    lens = PCALens()
-    mapper = Mapper()
-    graph = mapper.map(X, lens=lens, clusterer=DBSCAN(eps=1.5), n_intervals=10, overlap_perc=0.3)
+    mapper = Mapper(verbosity=2)
+    graph = mapper.map(
+        df=X,
+        lens=PCALens(),
+        clusterer=DBSCAN(eps=1.5),
+        n_intervals=10,
+        overlap_perc=0.3)
 
     modes = []
     for name, data in graph.nodes.data():
