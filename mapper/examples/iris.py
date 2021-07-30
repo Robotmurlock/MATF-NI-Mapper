@@ -5,6 +5,7 @@ from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import networkx as nx
+from scipy.stats import entropy
 
 
 def most_common(lst):
@@ -29,19 +30,41 @@ def run():
         overlap_perc=0.3)
 
     modes = []
+    entropies = []
     for name, data in graph.nodes.data():
         instances = data['instances']
-        modes.append(y[instances].mode()[0])
+        instance_classes = y[instances]
+        modes.append(instance_classes.mode()[0])
+        entropies.append(entropy(instance_classes.value_counts() / instance_classes.shape[0]))
 
-    colors = {
+    mode_colors = {
         'Iris-setosa': 'red',
         'Iris-virginica': 'blue',
         'Iris-versicolor': 'green'
     }
-    color_map = [colors[m] for m in modes]
+    mode_color_map = [mode_colors[m] for m in modes]
 
     pos = nx.spring_layout(graph)
-    nx.draw(graph, pos, node_color=color_map, with_labels=True)
+    nx.draw(graph, pos, node_color=mode_color_map, with_labels=True)
+    plt.show()
+
+    entropy_colors = {
+        0.0: 'beige',
+        0.1: 'yellow',
+        0.2: 'orange',
+        0.3: 'darkorange',
+        0.4: 'coral',
+        1.0: 'red'
+    }
+    entropy_color_map = []
+    for e in entropies:
+        for treshold, color in entropy_colors.items():
+            if e <= treshold:
+                entropy_color_map.append(color)
+                break
+
+    pos = nx.spring_layout(graph)
+    nx.draw(graph, pos, node_color=entropy_color_map, with_labels=True)
     plt.show()
 
 
