@@ -14,7 +14,7 @@ def most_common(lst):
 
 def run():
     df = pd.read_csv('../../data/Iris.csv')
-    features = ['SepalLengthCm', 'SepalWidthCm' , 'PetalLengthCm', 'PetalWidthCm']
+    features = ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']
     target = 'Species'
     X, y = df[features], df[target]
 
@@ -27,15 +27,13 @@ def run():
         lens=PCALens(),
         clusterer=DBSCAN(eps=1.5),
         n_intervals=10,
-        overlap_perc=0.3)
+        overlap_perc=0.5)
 
-    modes = []
-    entropies = []
+    node_info = []
     for name, data in graph.nodes.data():
         instances = data['instances']
         instance_classes = y[instances]
-        modes.append([name, instance_classes.mode()[0]])
-        entropies.append([name, entropy(instance_classes.value_counts() / instance_classes.shape[0])])
+        node_info.append([name, instance_classes])
 
     mode_colors = {
         'Iris-setosa': 'red',
@@ -47,12 +45,18 @@ def run():
     fig, axs = plt.subplots(figsize=(14, 8), ncols=2)
 
     axs[0].set_title('Graph colored by class mode')
+    cs = set()
     for c in ['Iris-setosa', 'Iris-virginica', 'Iris-versicolor']:
-        nx.draw_networkx_nodes(graph, pos,
-            ax=axs[0],
-            node_color=mode_colors[c],
-            nodelist=[m[0] for m in modes if m[1] == c],
-            label=c)
+        for ni in node_info:
+            if ni[1].mode()[0] != c:
+                continue
+            nx.draw_networkx_nodes(graph, pos,
+                ax=axs[0],
+                node_color=mode_colors[c],
+                nodelist=[ni[0]],
+                node_size=10*ni[1].shape[0],
+                label=c if c not in cs else None)
+            cs.add(c)
     nx.draw_networkx_edges(graph, pos=pos, ax=axs[0])
     nx.draw_networkx_labels(graph, pos, ax=axs[0])
     axs[0].legend(scatterpoints=1)
@@ -66,15 +70,21 @@ def run():
         1.0: 'red'
     }
     axs[1].set_title('Graph colored by node entropy')
-    used_nodes = []
+    used_nodes = set()
+    threshold_labels = set()
     for treshold, color in entropy_colors.items():
-        nodelist = [e[0] for e in entropies if e[1] <= treshold and e[0] not in used_nodes]
-        used_nodes = used_nodes + nodelist
-        nx.draw_networkx_nodes(graph, pos,
-            ax=axs[1],
-            node_color=color,
-            nodelist=nodelist,
-            label=f'<= {treshold}')
+        for ni in node_info:
+            e = entropy(ni[1].value_counts() / ni[1].shape[0])
+            if ni[0] in used_nodes or e > treshold:
+                continue
+            used_nodes.add(ni[0])
+            nx.draw_networkx_nodes(graph, pos,
+                ax=axs[1],
+                node_color=color,
+                nodelist=[ni[0]],
+                node_size=10 * ni[1].shape[0],
+                label=f'<= {treshold}' if treshold not in threshold_labels else None)
+            threshold_labels.add(treshold)
     nx.draw_networkx_edges(graph, pos=pos, ax=axs[1])
     nx.draw_networkx_labels(graph, pos, ax=axs[1])
     axs[1].legend(scatterpoints=1)
