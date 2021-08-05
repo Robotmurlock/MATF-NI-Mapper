@@ -1,6 +1,6 @@
 # MATF-NI-Mapper
 
-## Fast introduction to Topology
+## Short introduction to Topology
 
 `Topology` is the math concerning continuous objects. 
 Not sizes and shapes, but continuity. It is how
