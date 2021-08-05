@@ -44,7 +44,9 @@ real valued coordinate functions or data or
 other notions of geometric representation like
 `reeb graph`. [4]
 
-## Mapper - Topological background and motivation (construction)
+![iris](docs/images/reeb-graph.png)
+
+## Mapper - Topological background and motivation
 
 **Definition:** `Cover C of set X` is collection of sets
 whose union includes X. Cover is `open cover` is all 
@@ -73,22 +75,61 @@ of functions of R are 0,
 
 ![partition](https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Partition_of_unity_illustration.svg/500px-Partition_of_unity_illustration.svg.png)
 
+**Definition:** Points v in the k-simplex correspond
+to set of ordered k-tuples of real numbers 
+(numbers are from interval [0, 1] and they sum up to 1).
+We can intrepet these values as normalized masses.
+This coordinate system is called `barycentric coordinate
+system`.
+
+**Example:** Barycentric coordinates of 2-simplex (triangle):
+
+![barycentric](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TriangleBarycentricCoordinates.svg/400px-TriangleBarycentricCoordinates.svg.png)
+
+TODO (definition and examples): 
+- topology
+- map, continous maps (+base theorems)
+- connected components and path connected components.
+
+### Construction
+
 Assume we have finite covering U = {Ua | a ∈ A} 
 of space X (A is indexing set), 
 we can define nerve of the covering U 
 to be simplical complex N(U):
 - Vertices of N(U) are named by index set A. 
 - Family {a(0), ..., a(k)} forms k-simplex
-in N(U) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
+in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
 non-empty set.
 
-With defined partition of unity, we can obtain 
-map from X to N(U). 
+With defined partition of unity {Φa: X -> [0, 1] | a ∈ A} (∑α Φα(x)=1), 
+we can obtain map from X to N(U):
+- Let T: X -> A, T(x) = {a | x ∈ Ua}
+(set of members of covers that contain x).
+- Let ρ: X -> N(U) where ρ(x) is point in simplex
+spanned by vertices a ∈ T(x) 
+(spanned by k-simplex vertices) whose
+barycentric coordinates are (Φa1(x), Φa2(x), ..., Φak(x))
+where a1 (a(1)), a2, ..., ak are values from T(x).
+Continuous map ρ provides kind of partial coordination of X 
+using k-simplex from N(U).
 
+We can form finite covering V with continuous map f: X -> Z 
+where Z is parameter space. Let parameter space Z
+be equipped with finite open covering C = {Cb | b ∈ B} 
+(B is indexing set). Let g be inverse map of f.
+Map g is continuous since f is continuous. Hence, the
+sets Vb := g(Cb) also form finite open 
+covering of space X. We can now decompose Ub into
+path connected components (Vb is union of connected
+components). 
+
+### Multiresolution structure
+
+TODO
 
 ## Mapper - Implementation
 
-![iris](docs/images/reeb-graph.png)
 
 
 
