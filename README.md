@@ -100,7 +100,7 @@ to be simplical complex N(U):
 - Vertices of N(U) are named by index set A. 
 - Family {a(0), ..., a(k)} forms k-simplex
 in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
-non-empty set.
+non-empty set. [3]
 
 With defined partition of unity {Φa: X -> [0, 1] | a ∈ A} (∑α Φα(x)=1), 
 we can obtain map from X to N(U):
@@ -112,7 +112,7 @@ spanned by vertices a ∈ T(x)
 barycentric coordinates are (Φa1(x), Φa2(x), ..., Φak(x))
 where a1 (a(1)), a2, ..., ak are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
-using k-simplex from N(U).
+using k-simplex from N(U). [3]
 
 We can form finite covering V with continuous map f: X -> Z 
 where Z is parameter space. Let parameter space Z
@@ -122,11 +122,32 @@ Map g is continuous since f is continuous. Hence, the
 sets Vb := g(Cb) also form finite open 
 covering of space X. We can now decompose Ub into
 path connected components (Vb is union of connected
-components). 
+components). [3]
 
 ### Multiresolution structure
 
-TODO
+If we have two coverings U = {Ua | a ∈ A} 
+and V = {Vb | b ∈ B} then `map of coverings` from U
+to V is function f: A -> B so that for all a ∈ A,
+we have Ua ⊆ Vf(a). Hence, we have induced
+mapping of simplical complexes N(f): N(U) -> N(V). [3]
+
+Consequently, if we have a family of
+coverings Ui, i = 0,1,...,n, and maps of coverings 
+fi : Ui → Ui+1 for each i, we obtain 
+a diagram of simplicial complexes and simplicial maps: [3]
+
+![multiresolution](docs/images/multiresolution.png)
+
+This means that when resolution of cover increases
+(members of cover are decomposed into more "smaller"
+members) the resulting "more detailed" 
+simplical complex (vertices are consequently decomposed).
+In case of graphs, they are more refined in sense that
+there are more nodes inserted along the edges. 
+Example: [6]
+
+![multiresolution-example](docs/images/multiresolution-example.png)
 
 ## Mapper - Implementation
 
@@ -150,3 +171,5 @@ TODO
 Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar Carlsson](https://diglib.eg.org/bitstream/handle/10.2312/SPBG.SPBG07.091-100/091-100.pdf?sequence=1&isAllowed=y)
 
 [\[5\] S. Mardsic and J. Segal, Shape theory, North-Holland Publishing Company, 1982.]()
+
+[\[6\] The Shape of an Image: A Study of Mapper on Images](https://www.researchgate.net/publication/320596185_The_Shape_of_an_Image_A_Study_of_Mapper_on_Images)
