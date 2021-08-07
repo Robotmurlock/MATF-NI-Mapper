@@ -147,13 +147,23 @@ called `path-connected components`.
 ### Construction
 
 Assume we have finite covering U = {Ua | a ∈ A} 
-of space X (A is indexing set), 
-we can define nerve of the covering U 
-to be simplical complex N(U):
+of space X where A is indexing set (image _construction-1_). 
+
+![construction-1](docs/images/construction-1.png)
+<center>construction-1: Space X with finite covering U = 
+{U<sub>1</sub>, U<sub>2</sub>, 
+U<sub>3</sub>, U<sub>4</sub>}</center>
+
+We can define nerve of the covering U 
+to be simplical complex N(U) (image _constructin-2_):
 - Vertices of N(U) are named by index set A. 
 - Family {a(0), ..., a(k)} forms k-simplex
 in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
 non-empty set. [3]
+
+![construction-1](docs/images/construction-2.png)
+<center>construction-2: Nerve of covering N(U) 
+for U</center>
 
 With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} (∑α Φα(x)=1), 
 we can obtain map from X to N(U):
@@ -167,15 +177,25 @@ where a1 (a(1)), a2, ..., ak are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
 using k-simplex from N(U). [3]
 
-We can form finite covering V with continuous map f: X ⟶ Z 
-where Z is parameter space. Let parameter space Z
-be equipped with finite open covering C = {Cb | b ∈ B} 
-(B is indexing set). Let g be inverse map of f.
-Map g is continuous since f is continuous. Hence, the
-sets Vb := g(Cb) also form finite open 
-covering of space X. We can now decompose Ub into
+We can form finite covering V with continuous 
+map f: X ⟶ Z where Z is parameter space. 
+Let parameter space Z be equipped with 
+finite open covering C = {Cb | b ∈ B} 
+where B is indexing set (image _construction-3_). 
+
+![construction-3](docs/images/construction-3.png)
+<center>construction-3: Mapping of covering C to Z</center>
+
+Let g be inverse map of f.
+Map g is continuous since f is continuous. 
+Hence, the sets Vb := g(Cb) also form finite open 
+covering of space X (image _construction-4_). 
+We can now decompose Ub into
 path connected components (Vb is union of connected
 components). [3]
+
+![construction-4](docs/images/construction-4.png)
+<center>construction-4: Forming covering using inverse function g</center>
 
 ### Multiresolution structure
 
@@ -204,6 +224,7 @@ Example: [6]
 
 ## Mapper - Implementation
 
+![mapper-overview](docs/images/mapper-overview.png)
 
 
 
