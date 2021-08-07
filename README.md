@@ -2,15 +2,15 @@
 
 ## Short introduction to Topology
 
-`Topology` is the math concerning continuous objects. 
-Not sizes and shapes, but continuity. It is how
+`Topology` is the math concerning continuous objects
+(not sizes and shapes, but continuity). It is how
 things are connected and where the `gaps` are. 
 It explains how a material's shape can be 
 completely deformed into new one without losing its 
-core properties. 
+core properties. [1]
 
-**Definition (homotopy):** Let f, g : X → Y be maps. 
-f is `homotopic` to g if there exists a map F : X×I → Y
+**Definition (homotopy):** Let f, g : X ⟶ Y be maps. 
+f is `homotopic` to g if there exists a map F : X×I ⟶ Y
 such that F(x, 0) = f(x) and F(x, 1) = g(x) 
 for all points x ∈ X. The map F is called a homotopy 
 from f to g and we write it as f' F g.
@@ -19,11 +19,10 @@ of F as “time”, then F describes a
 “continuous deformation” of f into g. At time 0 we 
 have the function f, at time 1 we have the function g.
 
-Famous example is the `mug and donut`
-`homotopy`. Informally, two continous functions from
+Famous example is the `mug and donut homotopy`. Informally, two continous functions from
 one topological space to another are called `homotopic`
-if one can be `continuosly deformed` into another. Such
-a deformation being called a `homotopy` between the 
+if one can be `continuously deformed` into another. Such
+a deformation being called a homotopy between the 
 two functions. [1, 2]
 
 ![iris](docs/images/mug-donut.gif)
@@ -34,6 +33,9 @@ two functions. [1, 2]
 of datasets using techiniques from `topology`. It is usually combined
 with other forms of analysis such as statistical or geometric
 approaches. [1]
+
+Famous TDa algorithm for visualization of high dimensional
+data is `Mapper`.
 
 ## Mapper - Introduction
 
@@ -48,9 +50,39 @@ other notions of geometric representation like
 
 ## Mapper - Topological background and motivation
 
+Mapper algorithm is explained in three sections:
+- Theory required for understanding theory
+behind mapper algorithm;
+- Mapper: Construction of simplical complex (e.g. graph)
+from cover;
+- Mapper: Multiresolution motivation (level of detail).
+
+### Definitions
+
+**Definition:** `A topology τ on a set X` consists of subsets of X satisfying the following
+properties:
+1. The empty set ∅ and the space X are both sets in the topology;
+2. The union of any collection of sets in τ is contained in τ;
+3. The intersection of any finitely many sets in τ is also contained in τ.
+
+All sets in topology are `open sets`. [3]
+
+**Examples (with visualization):** 
+1. τ = {∅, {1, 2, 3}}
+2. τ = {∅, {1}, {1, 2, 3}}
+3. τ = {∅, {1}, {2}, {1, 2}, {1, 2, 3}}
+4. τ = {∅, {1, 2}, {2, 3}, {2}, {1, 2, 3}}
+5. τ = {∅, {2}, {3}, {1, 2, 3}}, missing: {2, 3} = {2} ∪ {3}. 
+6. τ = {∅, {1, 2}, {2, 3}, {1, 2, 3}}, missing: {2} = {1, 2} ∩ {2, 3}.
+
+![topology](docs/images/topology.png)
+
+**Definition:** `A topological space` is a pair (X, τ) 
+where X is a set and τ a topology on a set X. [3]
+
 **Definition:** `Cover C of set X` is collection of sets
 whose union includes X. Cover is `open cover` is all 
-members are open sets.
+members are open sets. [3]
 
 **Example:** X is unit circle and C is set of circles
 containing X.
@@ -86,10 +118,31 @@ system`.
 
 ![barycentric](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/TriangleBarycentricCoordinates.svg/400px-TriangleBarycentricCoordinates.svg.png)
 
-TODO (definition and examples): 
-- topology
-- map, continous maps (+base theorems)
 - connected components and path connected components.
+
+**Definition:** A topological space X is said to be 
+`disconnected`
+if it is the union of two disjoint nonempty open sets. 
+Otherwise, X is said to be `connected`. We can
+define relation x ~ y if there exists connected subset
+of X that is containing them. It can be shown that this relation is equivalence
+relation. Equilvalence classes of this relation are
+called `connected components`. [3]
+
+![connectedness](docs/images/connectedness.png)
+
+**Definition:**
+The space X is said to be `path-connected` if for any 
+two points x,y ∈ X there exists a continuous 
+function f from the unit interval [0,1] 
+to X with f(0) = x and f(1) =
+y. (This function is called a path from x to y.)
+We can now define relation x ~ y if x is path connected
+to y. It can be shown that this relation is equivalence
+relation. Equilvalence classes of this relation are
+called `path-connected components`.
+
+![path-connectedness](docs/images/path-connectedness.png)
 
 ### Construction
 
@@ -102,11 +155,11 @@ to be simplical complex N(U):
 in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
 non-empty set. [3]
 
-With defined partition of unity {Φa: X -> [0, 1] | a ∈ A} (∑α Φα(x)=1), 
+With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} (∑α Φα(x)=1), 
 we can obtain map from X to N(U):
-- Let T: X -> A, T(x) = {a | x ∈ Ua}
+- Let T: X ⟶ A, T(x) = {a | x ∈ Ua}
 (set of members of covers that contain x).
-- Let ρ: X -> N(U) where ρ(x) is point in simplex
+- Let ρ: X ⟶ N(U) where ρ(x) is point in simplex
 spanned by vertices a ∈ T(x) 
 (spanned by k-simplex vertices) whose
 barycentric coordinates are (Φa1(x), Φa2(x), ..., Φak(x))
@@ -114,7 +167,7 @@ where a1 (a(1)), a2, ..., ak are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
 using k-simplex from N(U). [3]
 
-We can form finite covering V with continuous map f: X -> Z 
+We can form finite covering V with continuous map f: X ⟶ Z 
 where Z is parameter space. Let parameter space Z
 be equipped with finite open covering C = {Cb | b ∈ B} 
 (B is indexing set). Let g be inverse map of f.
@@ -128,9 +181,9 @@ components). [3]
 
 If we have two coverings U = {Ua | a ∈ A} 
 and V = {Vb | b ∈ B} then `map of coverings` from U
-to V is function f: A -> B so that for all a ∈ A,
+to V is function f: A ⟶ B so that for all a ∈ A,
 we have Ua ⊆ Vf(a). Hence, we have induced
-mapping of simplical complexes N(f): N(U) -> N(V). [3]
+mapping of simplical complexes N(f): N(U) ⟶ N(V). [3]
 
 Consequently, if we have a family of
 coverings Ui, i = 0,1,...,n, and maps of coverings 
@@ -173,3 +226,5 @@ Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar 
 [\[5\] S. Mardsic and J. Segal, Shape theory, North-Holland Publishing Company, 1982.]()
 
 [\[6\] The Shape of an Image: A Study of Mapper on Images](https://www.researchgate.net/publication/320596185_The_Shape_of_an_Image_A_Study_of_Mapper_on_Images)
+
+[\[7\] Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
