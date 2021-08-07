@@ -149,10 +149,7 @@ called `path-connected components`.
 Assume we have finite covering U = {Ua | a ∈ A} 
 of space X where A is indexing set (image _construction-1_). 
 
-![construction-1](docs/images/construction-1.png)
-<center>construction-1: Space X with finite covering U = 
-{U<sub>1</sub>, U<sub>2</sub>, 
-U<sub>3</sub>, U<sub>4</sub>}</center>
+construction-1: Space X with finite covering U = {U<sub>1</sub>, U<sub>2</sub>, U<sub>3</sub>, U<sub>4</sub>} ![construction-1](docs/images/construction-1.png)
 
 We can define nerve of the covering U 
 to be simplical complex N(U) (image _constructin-2_):
@@ -161,9 +158,7 @@ to be simplical complex N(U) (image _constructin-2_):
 in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
 non-empty set. [3]
 
-![construction-1](docs/images/construction-2.png)
-<center>construction-2: Nerve of covering N(U) 
-for U</center>
+construction-2: Nerve of covering N(U) for U ![construction-1](docs/images/construction-2.png)
 
 With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} (∑α Φα(x)=1), 
 we can obtain map from X to N(U):
@@ -183,8 +178,7 @@ Let parameter space Z be equipped with
 finite open covering C = {Cb | b ∈ B} 
 where B is indexing set (image _construction-3_). 
 
-![construction-3](docs/images/construction-3.png)
-<center>construction-3: Mapping of covering C to Z</center>
+construction-3: Mapping of covering C to Z ![construction-3](docs/images/construction-3.png)
 
 Let g be inverse map of f.
 Map g is continuous since f is continuous. 
@@ -194,8 +188,7 @@ We can now decompose Ub into
 path connected components (Vb is union of connected
 components). [3]
 
-![construction-4](docs/images/construction-4.png)
-<center>construction-4: Forming covering using inverse function g</center>
+construction-4: Forming covering using inverse function g ![construction-4](docs/images/construction-4.png)
 
 ### Multiresolution structure
 
