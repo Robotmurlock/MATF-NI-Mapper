@@ -146,7 +146,7 @@ called `path-connected components`.
 
 ### Construction
 
-Assume we have finite covering U = {Ua | a ∈ A} 
+Assume we have finite covering U = {U<sub>a</sub> | a ∈ A} 
 of space X where A is indexing set (image _construction-1_). 
 
 ![construction-1](docs/images/construction-1.png)
@@ -156,30 +156,33 @@ of space X where A is indexing set (image _construction-1_).
 We can define nerve of the covering U 
 to be simplical complex N(U) (image _constructin-2_):
 - Vertices of N(U) are named by index set A. 
-- Family {a(0), ..., a(k)} forms k-simplex
-in N(U) (vertices of simplex) if and only if Ua(0) ∩ Ua(1) ∩ ... ∩ Ua(k) is 
+- Family {a<sub>0</sub>, ..., a<sub>k</sub>} forms k-simplex
+in N(U) (vertices of simplex) if and only if U<sub>a<sub>0</sub></sub> 
+∩ U<sub>a<sub>1</sub></sub ∩ ... ∩ U<sub>a<sub>k</sub></sub> is 
 non-empty set. [3]
 
 ![construction-2](docs/images/construction-2.png)
 <p align="center">construction-2: Nerve of covering N(U) for U </p>
 
 
-With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} (∑α Φα(x)=1), 
+With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} 
+(∑<sub>α</sub> Φ<sub>α</sub>(x)=1), 
 we can obtain map from X to N(U):
-- Let T: X ⟶ A, T(x) = {a | x ∈ Ua}
+- Let T: X ⟶ A, T(x) = {a | x ∈ U<sub>a</sub>}
 (set of members of covers that contain x).
 - Let ρ: X ⟶ N(U) where ρ(x) is point in simplex
 spanned by vertices a ∈ T(x) 
 (spanned by k-simplex vertices) whose
-barycentric coordinates are (Φa1(x), Φa2(x), ..., Φak(x))
-where a1 (a(1)), a2, ..., ak are values from T(x).
+barycentric coordinates are (Φ<sub>a<sub>1</sub></sub>(x), 
+Φ<sub>a<sub>2</sub></sub>(x), ..., Φ<sub>a<sub>k</sub></sub>(x))
+where a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>k</sub> are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
 using k-simplex from N(U). [3]
 
 We can form finite covering V with continuous 
 map f: X ⟶ Z where Z is parameter space. 
 Let parameter space Z be equipped with 
-finite open covering C = {Cb | b ∈ B} 
+finite open covering C = {C<sub>b</sub> | b ∈ B} 
 where B is indexing set (image _construction-3_). 
 
 ![construction-3](docs/images/construction-3.png)
@@ -188,7 +191,7 @@ where B is indexing set (image _construction-3_).
 
 Let g be inverse map of f.
 Map g is continuous since f is continuous. 
-Hence, the sets Vb := g(Cb) also form finite open 
+Hence, the sets V<sub>b</sub> := g(C<sub>b</sub>) also form finite open 
 covering of space X (image _construction-4_). 
 We can now decompose Ub into
 path connected components (Vb is union of connected
@@ -199,15 +202,15 @@ components). [3]
 
 ### Multiresolution structure
 
-If we have two coverings U = {Ua | a ∈ A} 
-and V = {Vb | b ∈ B} then `map of coverings` from U
+If we have two coverings U = {U<sub>a</sub> | a ∈ A} 
+and V = {V<sub>b</sub> | b ∈ B} then `map of coverings` from U
 to V is function f: A ⟶ B so that for all a ∈ A,
-we have Ua ⊆ Vf(a). Hence, we have induced
+we have U<sub>a</sub> ⊆ V<sub>f(a)</sub>. Hence, we have induced
 mapping of simplical complexes N(f): N(U) ⟶ N(V). [3]
 
 Consequently, if we have a family of
-coverings Ui, i = 0,1,...,n, and maps of coverings 
-fi : Ui → Ui+1 for each i, we obtain 
+coverings U<sub>i</sub>, i = 0,1,...,n, and maps of coverings 
+f<sub>i</sub> : U<sub>i</sub> → U<sub>i+1</sub> for each i, we obtain 
 a diagram of simplicial complexes and simplicial maps: [3]
 
 ![multiresolution](docs/images/multiresolution.png)
