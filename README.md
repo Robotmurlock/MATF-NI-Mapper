@@ -310,7 +310,8 @@ those nodes and expect those two classes to mix when applying
 trained classification model.
 
 We could also make another plot after training model to see
-model certainty i.e. where 
+model certainty i.e. where model is not sure which class
+does the instance belong to.
 
 ![iris](docs/images/iris.png)
 
