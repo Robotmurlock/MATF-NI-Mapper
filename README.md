@@ -228,7 +228,7 @@ Example: [6]
 ## Mapper - Implementation
 
 ![mapper-overview](docs/images/mapper-overview.png)
-<p align="center">mapper-example: Applying mapper</p>
+<p align="center">mapper-example: Applying mapper [8]</p>
 
 
 Statistical version of mapper is used for implementation.
@@ -299,4 +299,4 @@ Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar 
 
 [\[7\] Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
 
-[\[8\] KeplerMapper](https://kepler-mapper.scikit-tda.org/en/latest/index.html)
+[\[8\] tmap: an integrative framework based on topological data analysis for population-scale microbiome stratification and association studies](https://www.researchgate.net/publication/338120777_tmap_an_integrative_framework_based_on_topological_data_analysis_for_population-scale_microbiome_stratification_and_association_studies)
