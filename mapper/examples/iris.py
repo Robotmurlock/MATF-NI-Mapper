@@ -58,11 +58,11 @@ def run():
                 label=c if c not in cs else None)
             cs.add(c)
     nx.draw_networkx_edges(graph, pos=pos, ax=axs[0])
-    nx.draw_networkx_labels(graph, pos, ax=axs[0])
+    nx.draw_networkx_labels(graph, pos, ax=axs[0], font_size=10)
     axs[0].legend(scatterpoints=1)
 
     entropy_colors = {
-        0.0: 'beige',
+        0.0: 'lightgray',
         0.1: 'yellow',
         0.2: 'orange',
         0.3: 'darkorange',
@@ -86,7 +86,7 @@ def run():
                 label=f'<= {treshold}' if treshold not in threshold_labels else None)
             threshold_labels.add(treshold)
     nx.draw_networkx_edges(graph, pos=pos, ax=axs[1])
-    nx.draw_networkx_labels(graph, pos, ax=axs[1])
+    nx.draw_networkx_labels(graph, pos, ax=axs[1], font_size=10)
     axs[1].legend(scatterpoints=1)
 
     fig.savefig('../../docs/images/iris.png')

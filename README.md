@@ -227,10 +227,6 @@ Example: [6]
 
 ## Mapper - Implementation
 
-![mapper-overview](docs/images/mapper-overview.png)
-<p align="center">mapper-example: Applying mapper [8]</p>
-
-
 Statistical version of mapper is used for implementation.
 Idea is to use clustering to partition space into connected
 components. Assume we have N data points x ∈ X, `filter 
@@ -277,6 +273,9 @@ image mapper-example: `point cloud`. Algorithm:
    v<sub>a, b</sub> and v<sub>c, d</sub> are connected
    if C<sub>a, b</sub> ∩ C<sub>c, d</sub> ≠ ∅
    - Example: image mapper-example: `TDA network`
+
+![mapper-overview](docs/images/mapper-overview.png)
+<p align="center">mapper-example: Applying mapper [8]</p>
 
 ## Toy Example - Iris
 
