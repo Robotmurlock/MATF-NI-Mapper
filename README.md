@@ -315,6 +315,10 @@ does the instance belong to.
 
 ![iris](docs/images/iris.png)
 
+## Disaster Tweets Dataset
+
+Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started)
+
 ## Literature
 
 [\[1\] Intro to Applied Topological Data Analysis](https://towardsdatascience.com/intro-to-topological-data-analysis-and-application-to-nlp-training-data-for-financial-services-719495a111a4)
