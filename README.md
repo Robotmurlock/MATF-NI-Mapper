@@ -228,9 +228,55 @@ Example: [6]
 ## Mapper - Implementation
 
 ![mapper-overview](docs/images/mapper-overview.png)
+<p align="center">mapper-example: Applying mapper</p>
 
 
-
+Statistical version of mapper is used for implementation.
+Idea is to use clustering to partition space into connected
+components. Assume we have N data points x ∈ X, `filter 
+function (lens)` f: X ⟶ R and inter-point distance matrix
+(explicitly or implicitly given some metric). Example:
+image mapper-example: `point cloud`. Algorithm:
+1. **Form cover for range I of function f**:
+   - I = f(X);
+   - We can form cover by splitting I into set of intervals S
+   of equal length which overlap.
+   - Note: We have two parameters here: Size of set S (_n_)
+   (or length of interval _l_) and percentage overlap 
+   between successive intervals (_p_).
+   - Example: 
+     * X ⊆ [0,2]x[0,2]
+     * f(x, y) = y ⇒ I ⊆ [0,2]
+     * _n_ = 4, _p_ = 10%
+     * S = {[0, 0.55], [0.45, 1.05], [0.95, 1.55], [1.45, 2]}
+   - Example: image mapper-example: `filter`
+2. **Calcute preimage for each member of cover I:**
+   - X<sub>i</sub> = f<sup>-1</sup>[I<sub>i</sub>]
+   - set V = {X<sub>i</sub> | i ∈ {1...n}} forms cover of X
+   - Example: image mapper-example: `covering`
+3. **Cluster each member of V:**
+   - Clustering algorithm is arbitrary, but it should
+   have some desired characteristics which will be
+   noted later.
+   - Each cluster forms vertex
+   v<sub>X<sub>i</sub>, C<sub>j</sub></sub> 
+   where X<sub>i</sub> is clustered member of cover and
+   C<sub>i, j</sub> is cluster obtained from clustering
+   X<sub>i</sub>
+   - Example: image mapper-example: `clustering`
+4. **Form simplical complex (or graph):**
+   - In case of forming simplical complex: 
+   Set of vertices {v<sub>i<sub>1</sub>, j<sub>1</sub></sub>, 
+   v<sub>i<sub>2</sub>, j<sub>2</sub></sub>, ..., 
+   v<sub>i<sub>k</sub>, j<sub>k</sub></sub>}
+   form k-simplex if 
+   C<sub>i<sub>1</sub>, j<sub>1</sub></sub> ∩ 
+   C<sub>i<sub>2</sub>, j<sub>2</sub></sub> ∩ ... ∩ 
+   C<sub>i<sub>k</sub>, j<sub>k</sub></sub> ≠ ∅
+   - In case of forming graph (special case: Vertices
+   v<sub>a, b</sub> and v<sub>c, d</sub> are connected
+   if C<sub>a, b</sub> ∩ C<sub>c, d</sub> ≠ ∅
+   - Example: image mapper-example: `TDA network`
 
 ## Toy Example - Iris
 
@@ -252,3 +298,5 @@ Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar 
 [\[6\] The Shape of an Image: A Study of Mapper on Images](https://www.researchgate.net/publication/320596185_The_Shape_of_an_Image_A_Study_of_Mapper_on_Images)
 
 [\[7\] Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
+
+[\[8\] KeplerMapper](https://kepler-mapper.scikit-tda.org/en/latest/index.html)
