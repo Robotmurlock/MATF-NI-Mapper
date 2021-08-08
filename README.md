@@ -277,7 +277,40 @@ image mapper-example: `point cloud`. Algorithm:
 ![mapper-overview](docs/images/mapper-overview.png)
 <p align="center">mapper-example: Applying mapper [8]</p>
 
+### Clustering desired characteristics
+
+TODO [4]
+
 ## Toy Example - Iris
+
+`Iris dataset` is well known dataset consisting of three
+classes of flowers (`setosa`, `versicolor`, `virginica`) 
+with 50 instances for each class. This dataset is associated
+with classification (supervised) task in machine learning. [9]
+- Features: `SepalLengthCm`, `SepalWidthCm`, 
+`PetalLengthCm`, `PetalWidthCm`
+- Target: `Species`
+
+Mapper algorithm is used to test class separability with 
+visualization. Size of nodes is correlated to number of 
+instances that node contains. Parameters:
+- Filter function: Projection on first PCA component
+- Clustering: [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
+- Number of intervals: 10
+- overlap percentage: 50%
+
+In image on left we 
+can see nodes colored by `mode` of each cluster (node).
+We can see three "bigger" clusters:
+- `setosa` cluster which is isolated from `versicolor` 
+and `virginica`
+- `virginica` and `versicolor` clusters which are not isolated
+from each other. On image on the right we can see entropies of 
+those nodes and expect those two classes to mix when applying
+trained classification model.
+
+We could also make another plot after training model to see
+model certainty i.e. where 
 
 ![iris](docs/images/iris.png)
 
@@ -299,3 +332,5 @@ Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar 
 [\[7\] Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
 
 [\[8\] tmap: an integrative framework based on topological data analysis for population-scale microbiome stratification and association studies](https://www.researchgate.net/publication/338120777_tmap_an_integrative_framework_based_on_topological_data_analysis_for_population-scale_microbiome_stratification_and_association_studies)
+
+[\[9\] Iris dataset](https://archive.ics.uci.edu/ml/datasets/iris)
