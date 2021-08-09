@@ -5,7 +5,8 @@ import numpy as np
 import kmapper as km
 from sklearn.manifold import TSNE
 from sklearn.decomposition import PCA
-from sklearn.cluster import DBSCAN
+from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
+from sklearn.preprocessing import LabelEncoder
 
 
 def run():
@@ -16,18 +17,28 @@ def run():
     df.TEXT = df.TEXT.apply(vocabulary.remove_unknown)
     df = df[df.TEXT.str.strip() != '']
 
+    keyword_encoder = LabelEncoder()
+    location_encoder = LabelEncoder()
+    df['KEYWORD_index'] = keyword_encoder.fit_transform(df.KEYWORD)
+    df['LOCATION_index'] = location_encoder.fit_transform(df.LOCATION)
+
     X = np.stack([vocabulary.average(sentence) for sentence in df.TEXT])
-    y = df.TARGET.values
 
     mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=PCA(n_components=5), scaler=None)
-    graph = mapper.map(lens, X, clusterer=DBSCAN(eps=1.0), cover=km.Cover(n_cubes=4, perc_overlap=0.3))
+    lens = mapper.fit_transform(X, projection=TSNE(random_state=42))
+    graph = mapper.map(lens, X,
+                       clusterer=DBSCAN(eps=2.2),
+                       cover=km.Cover(n_cubes=14, perc_overlap=0.5))
 
     mapper.visualize(
         graph,
         title="Tweet Disaster Mapper",
         path_html="output/tweet_disaster.html",
-        custom_tooltips=y,
+        color_values=df[['TARGET', 'KEYWORD_index', 'LOCATION_index']],
+        color_function_name=['disaster', 'keyword', 'location'],
+        custom_tooltips=np.array(
+            [f'<p>[target={val[0]}, keyword={val[1]}, location={val[2]}]</p>' for val
+             in df[['TARGET', 'KEYWORD', 'LOCATION']].values])
     )
 
 
