@@ -4,8 +4,7 @@ from tweet_disaster.vocabulary import Vocabulary
 import numpy as np
 import kmapper as km
 from sklearn.manifold import TSNE
-from sklearn.decomposition import PCA
-from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
+from sklearn.cluster import DBSCAN
 from sklearn.preprocessing import LabelEncoder
 
 
@@ -38,7 +37,8 @@ def run():
         color_function_name=['disaster', 'keyword', 'location'],
         custom_tooltips=np.array(
             [f'<p>[target={val[0]}, keyword={val[1]}, location={val[2]}]</p>' for val
-             in df[['TARGET', 'KEYWORD', 'LOCATION']].values])
+             in df[['TARGET', 'KEYWORD', 'LOCATION']].values]),
+
     )
 
 
