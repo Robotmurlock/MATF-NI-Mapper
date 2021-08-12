@@ -279,7 +279,18 @@ image mapper-example: `point cloud`. Algorithm:
 
 ### Clustering desired characteristics
 
-TODO [4]
+Besides choosing a good filter function, finding a good 
+clustering is another important challenge for 
+decent data visualization. Mapper algorithm does
+not place any conditions on the clustering but
+they are some desired characteristics: [4]
+- Clustering should not be restricted to Euclidean space. 
+We can give inter-point distance matrix as an input to
+mapper algorithm.
+- Number of clusters should not be specified beforehand. 
+We can use algorithm that do not require number of clusters
+specified before applying clustering algorithm. Examples:
+DBSCAN, Agglomerative (hierarchical) clustering, ...
 
 ## Toy Example - Iris
 
