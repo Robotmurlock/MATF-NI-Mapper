@@ -7,7 +7,7 @@
 things are connected and where the `gaps` are. 
 It explains how a material's shape can be 
 completely deformed into new one without losing its 
-core properties. [1]
+core properties. [[1]](#1)
 
 **Definition (homotopy):** Let f, g : X ⟶ Y be maps. 
 f is `homotopic` to g if there exists a map F : X×I ⟶ Y
@@ -32,7 +32,7 @@ two functions. [1, 2]
 `Topological data analysis (TDA)` is an approach to the analysis
 of datasets using techiniques from `topology`. It is usually combined
 with other forms of analysis such as statistical or geometric
-approaches. [1]
+approaches. [[1]](#1)
 
 Famous TDa algorithm for visualization of high dimensional
 data is `Mapper`.
@@ -334,6 +334,7 @@ Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](h
 
 ## Literature
 
+<a id="1">[1]</a> 
 [\[1\] Intro to Applied Topological Data Analysis](https://towardsdatascience.com/intro-to-topological-data-analysis-and-application-to-nlp-training-data-for-financial-services-719495a111a4)
 
 [\[2\] When is a coffee mug a donut? Topology explains it](https://phys.org/news/2016-10-coffee-donut-topology.html)
