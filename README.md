@@ -292,7 +292,7 @@ We can use algorithm that do not require number of clusters
 specified before applying clustering algorithm. Examples:
 DBSCAN, Agglomerative (hierarchical) clustering, ...
 
-## Toy Example - Iris
+## Toy Example - 01_iris
 
 `Iris dataset` is well known dataset consisting of three
 classes of flowers (`setosa`, `versicolor`, `virginica`) 
@@ -301,6 +301,8 @@ with classification (supervised) task in machine learning. [9]
 - Features: `SepalLengthCm`, `SepalWidthCm`, 
 `PetalLengthCm`, `PetalWidthCm`
 - Target: `Species`
+
+![iris-flowers](docs/images/iris-flowers.png)
 
 Mapper algorithm is used to test class separability with 
 visualization. Size of nodes is correlated to number of 
