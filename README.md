@@ -23,7 +23,7 @@ Famous example is the `mug and donut homotopy`. Informally, two continous functi
 one topological space to another are called `homotopic`
 if one can be `continuously deformed` into another. Such
 a deformation being called a homotopy between the 
-two functions. [1, 2]
+two functions. [[1]](#1)[[2]](#2)
 
 ![iris](docs/images/mug-donut.gif)
 
@@ -44,7 +44,7 @@ notion of coordinatization for high dimensional
 datasets. Coordinatization can refer to choice of
 real valued coordinate functions or data or
 other notions of geometric representation like
-`reeb graph`. [4]
+`reeb graph`. [[4]](#4)
 
 ![iris](docs/images/reeb-graph.png)
 
@@ -65,7 +65,7 @@ properties:
 2. The union of any collection of sets in τ is contained in τ;
 3. The intersection of any finitely many sets in τ is also contained in τ.
 
-All sets in topology are `open sets`. [3]
+All sets in topology are `open sets`. [[3]](#3)
 
 **Examples (with visualization):** 
 1. τ = {∅, {1, 2, 3}}
@@ -78,11 +78,11 @@ All sets in topology are `open sets`. [3]
 ![topology](docs/images/topology.png)
 
 **Definition:** `A topological space` is a pair (X, τ) 
-where X is a set and τ a topology on a set X. [3]
+where X is a set and τ a topology on a set X. [[3]](#3)
 
 **Definition:** `Cover C of set X` is collection of sets
 whose union includes X. Cover is `open cover` is all 
-members are open sets. [3]
+members are open sets. [[3]](#3)
 
 **Example:** X is unit circle and C is set of circles
 containing X.
@@ -127,7 +127,7 @@ Otherwise, X is said to be `connected`. We can
 define relation x ~ y if there exists connected subset
 of X that is containing them. It can be shown that this relation is equivalence
 relation. Equilvalence classes of this relation are
-called `connected components`. [3]
+called `connected components`. [[3]](#3)
 
 ![connectedness](docs/images/connectedness.png)
 
@@ -159,7 +159,7 @@ to be simplical complex N(U) (image _constructin-2_):
 - Family {a<sub>0</sub>, ..., a<sub>k</sub>} forms k-simplex
 in N(U) (vertices of simplex) if and only if U<sub>a<sub>0</sub></sub> 
 ∩ U<sub>a<sub>1</sub></sub ∩ ... ∩ U<sub>a<sub>k</sub></sub> is 
-non-empty set. [3]
+non-empty set. [[3]](#3)
 
 ![construction-2](docs/images/construction-2.png)
 <p align="center">construction-2: Nerve of covering N(U) for U </p>
@@ -177,7 +177,7 @@ barycentric coordinates are (Φ<sub>a<sub>1</sub></sub>(x),
 Φ<sub>a<sub>2</sub></sub>(x), ..., Φ<sub>a<sub>k</sub></sub>(x))
 where a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>k</sub> are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
-using k-simplex from N(U). [3]
+using k-simplex from N(U). [[3]](#3)
 
 We can form finite covering V with continuous 
 map f: X ⟶ Z where Z is parameter space. 
@@ -195,7 +195,7 @@ Hence, the sets V<sub>b</sub> := g(C<sub>b</sub>) also form finite open
 covering of space X (image _construction-4_). 
 We can now decompose Ub into
 path connected components (Vb is union of connected
-components). [3]
+components). [[3]](#3)
 
 ![construction-4](docs/images/construction-4.png)
 <p align="center">construction-4: Forming covering using inverse function g</p>
@@ -206,12 +206,13 @@ If we have two coverings U = {U<sub>a</sub> | a ∈ A}
 and V = {V<sub>b</sub> | b ∈ B} then `map of coverings` from U
 to V is function f: A ⟶ B so that for all a ∈ A,
 we have U<sub>a</sub> ⊆ V<sub>f(a)</sub>. Hence, we have induced
-mapping of simplical complexes N(f): N(U) ⟶ N(V). [3]
+mapping of simplical complexes N(f): N(U) ⟶ N(V). [[3]](#3)
 
 Consequently, if we have a family of
 coverings U<sub>i</sub>, i = 0,1,...,n, and maps of coverings 
 f<sub>i</sub> : U<sub>i</sub> → U<sub>i+1</sub> for each i, we obtain 
-a diagram of simplicial complexes and simplicial maps: [3]
+a diagram of simplicial complexes and simplicial maps: 
+[[3]](#3)
 
 ![multiresolution](docs/images/multiresolution.png)
 
@@ -221,7 +222,7 @@ members) the resulting "more detailed"
 simplical complex (vertices are consequently decomposed).
 In case of graphs, they are more refined in sense that
 there are more nodes inserted along the edges. 
-Example: [6]
+Example: [[6]](#6)
 
 ![multiresolution-example](docs/images/multiresolution-example.png)
 
@@ -275,7 +276,7 @@ image mapper-example: `point cloud`. Algorithm:
    - Example: image mapper-example: `TDA network`
 
 ![mapper-overview](docs/images/mapper-overview.png)
-<p align="center">mapper-example: Applying mapper [8]</p>
+<p align="center">mapper-example: Applying mapper [[8]](#8)</p>
 
 ### Clustering desired characteristics
 
@@ -283,7 +284,7 @@ Besides choosing a good filter function, finding a good
 clustering is another important challenge for 
 decent data visualization. Mapper algorithm does
 not place any conditions on the clustering but
-they are some desired characteristics: [4]
+they are some desired characteristics: [[4]](#4)
 - Clustering should not be restricted to Euclidean space. 
 We can give inter-point distance matrix as an input to
 mapper algorithm.
@@ -297,7 +298,7 @@ DBSCAN, Agglomerative (hierarchical) clustering, ...
 `Iris dataset` is well known dataset consisting of three
 classes of flowers (`setosa`, `versicolor`, `virginica`) 
 with 50 instances for each class. This dataset is associated
-with classification (supervised) task in machine learning. [9]
+with classification (supervised) task in machine learning. [[9]](#9)
 - Features: `SepalLengthCm`, `SepalWidthCm`, 
 `PetalLengthCm`, `PetalWidthCm`
 - Target: `Species`
@@ -335,21 +336,29 @@ Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](h
 ## Literature
 
 <a id="1">[1]</a> 
-[\[1\] Intro to Applied Topological Data Analysis](https://towardsdatascience.com/intro-to-topological-data-analysis-and-application-to-nlp-training-data-for-financial-services-719495a111a4)
+[Intro to Applied Topological Data Analysis](https://towardsdatascience.com/intro-to-topological-data-analysis-and-application-to-nlp-training-data-for-financial-services-719495a111a4)
 
-[\[2\] When is a coffee mug a donut? Topology explains it](https://phys.org/news/2016-10-coffee-donut-topology.html)
+<a id="2">[2]</a> 
+[When is a coffee mug a donut? Topology explains it](https://phys.org/news/2016-10-coffee-donut-topology.html)
 
-[\[3\] Introduction to Topology](https://www.math.colostate.edu/~renzo/teaching/Topology10/Notes.pdf)
+<a id="3">[3]</a> 
+[Introduction to Topology](https://www.math.colostate.edu/~renzo/teaching/Topology10/Notes.pdf)
 
-[\[4\] Topological Methods for the Analysis of High Dimensional
+<a id="4">[4]</a> 
+[Topological Methods for the Analysis of High Dimensional
 Data Sets and 3D Object Recognition - Gurjeet Singh, Facundo Mémoli and Gunnar Carlsson](https://diglib.eg.org/bitstream/handle/10.2312/SPBG.SPBG07.091-100/091-100.pdf?sequence=1&isAllowed=y)
 
-[\[5\] S. Mardsic and J. Segal, Shape theory, North-Holland Publishing Company, 1982.]()
+<a id="5">[5]</a> 
+[S. Mardsic and J. Segal, Shape theory, North-Holland Publishing Company, 1982.]()
 
-[\[6\] The Shape of an Image: A Study of Mapper on Images](https://www.researchgate.net/publication/320596185_The_Shape_of_an_Image_A_Study_of_Mapper_on_Images)
+<a id="6">[6]</a> 
+[The Shape of an Image: A Study of Mapper on Images](https://www.researchgate.net/publication/320596185_The_Shape_of_an_Image_A_Study_of_Mapper_on_Images)
 
-[\[7\] Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
+<a id="7">[7]</a> 
+[Article: Topology based data analysis identifies a subgroup of breast cancers with a unique mutational profile and excellent survival](https://www.pnas.org/content/108/17/7265)
 
-[\[8\] tmap: an integrative framework based on topological data analysis for population-scale microbiome stratification and association studies](https://www.researchgate.net/publication/338120777_tmap_an_integrative_framework_based_on_topological_data_analysis_for_population-scale_microbiome_stratification_and_association_studies)
+<a id="8">[8]</a> 
+[tmap: an integrative framework based on topological data analysis for population-scale microbiome stratification and association studies](https://www.researchgate.net/publication/338120777_tmap_an_integrative_framework_based_on_topological_data_analysis_for_population-scale_microbiome_stratification_and_association_studies)
 
-[\[9\] Iris dataset](https://archive.ics.uci.edu/ml/datasets/iris)
+<a id="9">[9]</a> 
+[Iris dataset](https://archive.ics.uci.edu/ml/datasets/iris)
