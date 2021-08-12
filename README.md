@@ -305,7 +305,8 @@ with classification (supervised) task in machine learning. [[9]](#9)
 
 ![iris-flowers](docs/images/iris-flowers.png)
 
-Mapper algorithm is used to test class separability with 
+Custom mapper algorithm prototype is used to test 
+class separability with 
 visualization. Size of nodes is correlated to number of 
 instances that node contains. Parameters:
 - Filter function: Projection on first PCA component
@@ -319,9 +320,13 @@ We can see three "bigger" clusters:
 - `setosa` cluster which is isolated from `versicolor` 
 and `virginica`
 - `virginica` and `versicolor` clusters which are not isolated
-from each other. On image on the right we can see entropies of 
-those nodes and expect those two classes to mix when applying
-trained classification model.
+from each other. 
+
+On image on the right we can see entropies of 
+the nodes and expect classes `virginica` and 
+`versicolor` to mix when applying trained a classification model
+while `setosa` should be easily learned to be separated by
+the model.
 
 We could also make another plot after training model to see
 model certainty i.e. where model is not sure which class
