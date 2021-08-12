@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Any, List, Tuple
-from mapper.lens import Lens
+from lens import Lens
 import networkx as nx
 
 
