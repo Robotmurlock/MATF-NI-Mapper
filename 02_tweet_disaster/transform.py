@@ -3,32 +3,37 @@ import string
 import re
 from nltk.corpus import words, stopwords
 from nltk.stem import WordNetLemmatizer
+import pandas as pd
 
 
-def filter_printable(text):
+def compose(*functions):
+    return functools.reduce(lambda f, g: lambda x: f(g(x)), functions, lambda x: x)
+
+
+def filter_printable(text: str) -> str:
     return ''.join(list(filter(lambda ch: ch in string.printable, text)))
 
 
-def remove_links(text):
+def remove_links(text: str) -> str:
     return re.sub(r'https?://\S+|www\.\S+', '', text)
 
 
-def remove_punctuations(text):
+def remove_punctuations(text: str) -> str:
     return ''.join(list(filter(lambda ch: ch not in string.punctuation, text)))
 
 
-def to_lowercase(text):
+def to_lowercase(text: str) -> str:
     return text.lower()
 
 
 english_words = set(words.words())
 
 
-def remove_nonwords(text):
+def remove_nonwords(text: str) -> str:
     return ' '.join(list(filter(lambda word: word in english_words, text.split(' '))))
 
 
-def lemmatize(text):
+def lemmatize(text: str) -> str:
     lemmatizer = WordNetLemmatizer()
     ws = text.split(' ')
     for tag in ['a', 'r', 'n', 'v']:
@@ -39,83 +44,47 @@ def lemmatize(text):
 english_stopwords = set(stopwords.words('english'))
 
 
-def remove_stop_words(text):
+def remove_stop_words(text: str) -> str:
     return ' '.join(list(filter(lambda w: w not in english_stopwords, text.split(' '))))
 
 
-city_to_country = {
-    'United States': 'USA',
-    'New York': 'USA',
-    "London": 'UK',
-    "Los Angeles, CA": 'USA',
-    "Washington, D.C.": 'USA',
-    "California": 'USA',
-    "Chicago, IL": 'USA',
-    "Chicago": 'USA',
-    "New York, NY": 'USA',
-    "California, USA": 'USA',
-    "FLorida": 'USA',
-    "Nigeria": 'Africa',
-    "Kenya": 'Africa',
-    "Everywhere": 'Worldwide',
-    "San Francisco": 'USA',
-    "Florida": 'USA',
-    "United Kingdom": 'UK',
-    "Los Angeles": 'USA',
-    "Toronto": 'Canada',
-    "San Francisco, CA": 'USA',
-    "NYC": 'USA',
-    "Seattle": 'USA',
-    "Earth": 'Worldwide',
-    "Ireland": 'UK',
-    "London, England": 'UK',
-    "New York City": 'USA',
-    "Texas": 'USA',
-    "London, UK": 'UK',
-    "Atlanta, GA": 'USA',
-    "Mumbai": "India"}
+def drop_unused_columns(df: pd.DataFrame) -> pd.DataFrame:
+    return df.drop(columns=['id', 'location'], axis=1)
 
 
-def drop_id_columns(df):
-    return df.drop(columns='id', axis=1)
-
-
-def process_text(df):
-    for f in [filter_printable, remove_links, remove_punctuations, to_lowercase,
-              remove_nonwords, lemmatize, remove_stop_words]:
-        df['text'] = df['text'].apply(f)
+def process_text(df: pd.DataFrame) -> pd.DataFrame:
+    transform_text = compose(
+        remove_stop_words,
+        lemmatize,
+        remove_nonwords,
+        to_lowercase,
+        remove_punctuations,
+        remove_links,
+        filter_printable
+    )
+    df.text = df.text.apply(transform_text)
     return df
 
 
-def process_keywords(df):
-    df['keyword'] = df['keyword'].fillna('none')
-    df['keyword'] = df['keyword'].astype('str').apply(lambda x: x.replace('%20', '_'))
+def clean_feature_keyword(df: pd.DataFrame) -> pd.DataFrame:
+    # Blank line (nan) means there is not keyword
+    df.keyword = df.keyword.fillna('none')
+    # Rreplacing space character with '_'
+    df.keyword = df.keyword.astype('str').apply(lambda x: x.replace('%20', '_'))
     return df
 
 
-def process_location(df):
-    df['location'] = df['location'].replace(city_to_country)
-    df['location'] = df['location'].fillna('Worldwide')
-    return df
-
-
-def rename_columns(df):
+def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df.rename(columns={
         'keyword': 'KEYWORD',
-        'location': 'LOCATION',
         'text': 'TEXT',
         'target': 'TARGET'
     })
 
 
-def compose(*functions):
-    return functools.reduce(lambda f, g: lambda x: f(g(x)), functions, lambda x: x)
-
-
 transform = compose(
     rename_columns,
-    process_keywords,
-    process_location,
+    clean_feature_keyword,
     process_text,
-    drop_id_columns
+    drop_unused_columns
 )

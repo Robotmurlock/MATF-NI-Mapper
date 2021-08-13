@@ -355,35 +355,8 @@ Columns
 
 ### Exploratory Data Analysis
 
-Examples of some tweets with target value equal to 0:
-```
-I bought a 64oz jar of peanut butter and it's just getting demolished
-```
-```
-tomorrow will be the death of me
-```
-```
-@fotofill It looks so desolate. End of the world stuff. Gorgeous.
-```
-
-Examples of some tweets with target value equal to 1:
-```
-#Afghanistan: sharp rise in women and children casualties in first half of #2015 http://t.co/LdyWd4ydT9
-```
-```
-Storm damage reported in West Tennessee http://t.co/90L2lB5WMr
-```
-```
-Adult dies of plague in Colorado http://t.co/yoHVuwuMZS
-```
-
-Next tweet is interesting because it is labelled as a disaster, but
-it's quote from game and location value is `Whiterun, Skyrim`
-which is a location of a town in game `Skyrim`. We can conclude
-that quality of this dataset is not ideal.
-```
-Destruction magic's fine just don't go burning down any buildings
-```
+Exploratory data analysis od dataset can be found on 
+this [link](#empty).
 
 ## Literature
 

@@ -18,3 +18,6 @@ class Vocabulary:
     def average(self, sentence: str) -> np.array:
         return np.mean([self.embed[token] for token in sentence.split()], axis=0)
 
+    def maximum(self, sentence: str) -> np.array:
+        return np.max([self.embed[token] for token in sentence.split()], axis=0)
+
