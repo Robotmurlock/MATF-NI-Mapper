@@ -150,7 +150,7 @@ Assume we have finite covering U = {U<sub>a</sub> | a ∈ A}
 of space X where A is indexing set (image _construction-1_). 
 
 ![construction-1](docs/images/construction-1.png)
-<p align="center">construction-1: Space X with finite covering U = {U<sub>1</sub>, U<sub>2</sub>, U<sub>3</sub>, U<sub>4</sub>}</p>
+<p align="center">construction-1: Space X, defined by black border, with finite covering U = {U<sub>1</sub>, U<sub>2</sub>, U<sub>3</sub>, U<sub>4</sub>}</p>
 
 
 We can define nerve of the covering U 
@@ -158,7 +158,7 @@ to be simplical complex N(U) (image _constructin-2_):
 - Vertices of N(U) are named by index set A. 
 - Family {a<sub>0</sub>, ..., a<sub>k</sub>} forms k-simplex
 in N(U) (vertices of simplex) if and only if U<sub>a<sub>0</sub></sub> 
-∩ U<sub>a<sub>1</sub></sub ∩ ... ∩ U<sub>a<sub>k</sub></sub> is 
+∩ U<sub>a<sub>1</sub></sub> ∩ ... ∩ U<sub>a<sub>k</sub></sub> is 
 non-empty set. [[3]](#3)
 
 ![construction-2](docs/images/construction-2.png)
