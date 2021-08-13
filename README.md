@@ -356,7 +356,7 @@ Columns
 ### Exploratory Data Analysis
 
 Exploratory data analysis od dataset can be found on 
-this [link](#empty).
+this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_disaster/eda.ipynb).
 
 ## Literature
 
