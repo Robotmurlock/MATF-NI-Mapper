@@ -17,6 +17,15 @@ def kmapper_create_visualization(
         df: pd.DataFrame,
         filename: str
         ) -> None:
+    """
+    Creates visualization and stores it to html file using KeplerMapper api.
+
+    :param mapper: KeplerMapper.
+    :param graph: Graph created using KeplerMapper.
+    :param df: Data.
+    :param filename: Output file name (html).
+    :return: None
+    """
 
     def create_tooltip(val) -> str:
         return f'<p>Info: target={val[0]}, keyword={val[1]}<br> Text: {val[2]}</p>'
@@ -32,6 +41,14 @@ def kmapper_create_visualization(
 
 
 def kmapper_create_from_configuration(df: pd.DataFrame, mapper: km.KeplerMapper, configuration: dict) -> None:
+    """
+    Creates Mapper visualization for given configuration.
+
+    :param df: Data.
+    :param mapper: KeplerMapper.
+    :param configuration: Input data, Lens configuration and map configuration for creating Mapper visualization
+    :return: None.
+    """
     lens = mapper.fit_transform(configuration['X'], **configuration['lens_args'])
     graph = mapper.map(lens, configuration['X'], **configuration['map_args'])
     kmapper_create_visualization(mapper, graph, df, configuration['name'])

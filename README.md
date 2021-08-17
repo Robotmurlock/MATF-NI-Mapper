@@ -293,7 +293,7 @@ We can use algorithm that do not require number of clusters
 specified before applying clustering algorithm. Examples:
 DBSCAN, Agglomerative (hierarchical) clustering, ...
 
-## Toy Example - 01_iris
+## Toy Example - Iris Dataset - 01_iris
 
 `Iris dataset` is well known dataset consisting of three
 classes of flowers (`setosa`, `versicolor`, `virginica`) 
@@ -352,7 +352,7 @@ cd 01_iris
 python main.py (or python3 main.py)
 ```
 
-## Disaster Tweets Dataset
+## Disaster Tweets Dataset - 02_tweet_disaster
 
 Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started)
 
@@ -375,6 +375,28 @@ Columns
 
 Exploratory data analysis od dataset can be found on 
 this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_disaster/eda.ipynb).
+
+### Code 
+
+Code can be found in `01_iris` directory. Required packages:
+```
+pandas==1.2.4
+sklearn==0.0
+matplotlib==3.4.1
+networkx==2.5.1
+scipy==1.6.1
+seaborn==0.11.1
+wordcloud==1.8.1
+kmapper==2.0.1
+nltk==3.6.2
+```
+
+Running code:
+```
+cd 02_tweet_disaster
+
+python main.py (or python3 main.py)
+```
 
 ## Literature
 
