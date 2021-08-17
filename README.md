@@ -381,6 +381,14 @@ this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_di
 Interactive visualization is generated using KeplerMapper API. Results can
 be found on this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/docs/disaster_tweets_results).
 
+Result of Mapper algorithm using Glove word embeddings. Configuration:
+- Filter function: Projection on two PCA components
+- Clustering: [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
+- Number of intervals (cubes): 10x10
+- overlap percentage: 50%
+
+![kmapper-result-maximum](docs/images/kmapper-result-maximum.png)
+
 ### Code 
 
 Code can be found in `01_iris` directory. Required packages:
