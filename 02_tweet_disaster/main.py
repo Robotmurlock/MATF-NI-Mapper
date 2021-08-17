@@ -8,6 +8,7 @@ from sklearn.cluster import KMeans, DBSCAN
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import PCA
+import os
 
 
 def kmapper_create_visualization(
@@ -37,7 +38,12 @@ def kmapper_create_from_configuration(df: pd.DataFrame, mapper: km.KeplerMapper,
 
 
 def run():
-    df = pd.read_csv('../data/tweet_disaster.csv')
+    tweet_disaster_path = '../data/tweet_disaster.csv'
+    assert os.path.exists(tweet_disaster_path), 'Please download "train.csv" from '\
+                                                '"https://www.kaggle.com/c/nlp-getting-started/data" '\
+                                                'and store it in "data/tweet_disaster.csv"'
+
+    df = pd.read_csv()
     df = transform(df)
 
     vocabulary = Vocabulary()

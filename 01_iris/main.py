@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from scipy.stats import entropy
 from typing import List, Tuple
+import os
 
 
 def create_node_info(graph: nx.Graph, classes: pd.Series) -> List[Tuple[str, pd.Series]]:
@@ -137,7 +138,10 @@ def run():
     fig, axs = plt.subplots(figsize=(14, 8), ncols=2)
     plot_mode_graph(graph, node_info, pos, axs[0])
     plot_entropy_graph(graph, node_info, pos, axs[1])
-    fig.savefig('../docs/images/iris.png')
+
+    if not os.path.exists('output'):
+        os.mkdir('output')
+    fig.savefig('output/iris.png')
 
 
 if __name__ == '__main__':
