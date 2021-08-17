@@ -376,18 +376,58 @@ Columns
 Exploratory data analysis od the dataset can be found on 
 this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_disaster/eda.ipynb).
 
-### Results
+### Results - Glove, T-SNE, DBSCAN
 
 Interactive visualization is generated using KeplerMapper API. Results can
 be found on this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/docs/disaster_tweets_results).
 
 Result of The Mapper algorithm using Glove word embeddings. Configuration:
-- Filter function: Projection on two PCA components
+- Filter function: Projection on two T-SNE components
 - Clustering: [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
 - Number of intervals (cubes): 10x10
 - overlap percentage: 50%
 
 ![kmapper-result-maximum](docs/images/kmapper-result-maximum.png)
+<p align="center">Glove Embeddings (max), T-SNE, DBSCAN</p>
+
+When taking `average` instead of `maximum` of the Glove word embeddings
+we get more uniform representation (from disaster to non-disasters) instead
+of the flares for (mostly) the disasters. Base of configurations
+(T-SNE, DBSCAN) but parameters for these objects are differ.
+
+![kmapper-result-maximum](docs/images/kmapper-result-average.png)
+<p align="center">Glove Embeddings (mean), T-SNE, DBSCAN</p>
+
+### Results - Tf-Idf, PCA, DBSCAN
+
+Problem with Tf-Idf with PCA projection is that most of the samples are 
+collected in the middle (the middle nodes in the image). It is
+very hard to separate them using different paramters and algorithms.
+
+We have three disaster flares: `suicide bombing` (upper left), `wildfires` (left) 
+and `sandstorm` (bottom), that are separated from the rest.
+
+![kmapper-result-maximum](docs/images/kmapper-result-tfidf.png)
+<p align="center">Tf-Idf, PCA, DBSCAN</p>
+
+### Results - Tf-Idf, PCA, KMeans
+
+Separated node on top represents `sandstorm` disaster. Cluster of nodes
+on the right represent `suicide bombing` and bottom nodes on the left
+represent `wildifires`.
+
+![kmapper-result-maximum](docs/images/kmapper-result-tfidf-kmeans.png)
+<p align="center">Tf-Idf, PCA, KMeans</p>
+
+### Results - Tf-Idf, PCA, DBSCAN with cosine distance
+
+Problem with `cosine` distance in this is case is small threshold 
+between `0.5` and `0.6` (cosine distance has values from 0 to 1)
+where are nodes are sparsed or collected. On the image below
+we can see results with threshold `0.55`.
+
+![kmapper-result-maximum](docs/images/kmapper-result-tfidf-cosine.png)
+<p align="center">Tf-Idf, PCA, DBSCAN with cosine distance</p>
 
 ### Code 
 
