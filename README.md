@@ -334,6 +334,24 @@ does the instance belong to.
 
 ![iris](docs/images/iris.png)
 
+### Code
+
+Code can be found in `01_iris` directory. Required packages:
+```
+pandas==1.2.4
+sklearn==0.0
+matplotlib==3.4.1
+networkx==2.5.1
+scipy==1.6.1
+```
+
+Running code:
+```
+cd 01_iris
+
+python main.py (or python3 main.py)
+```
+
 ## Disaster Tweets Dataset
 
 Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started)
