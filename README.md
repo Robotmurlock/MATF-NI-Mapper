@@ -376,6 +376,11 @@ Columns
 Exploratory data analysis od dataset can be found on 
 this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_disaster/eda.ipynb).
 
+### Results
+
+Interactive visualization is generated using KeplerMapper API. Results can
+be found on this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/docs/disaster_tweets_results).
+
 ### Code 
 
 Code can be found in `01_iris` directory. Required packages:
