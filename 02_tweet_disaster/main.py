@@ -30,63 +30,10 @@ def kmapper_create_visualization(
     )
 
 
-def kmapper_maximum_of_token_vectors(df: pd.DataFrame, vocabulary: Vocabulary) -> None:
-    X = np.stack([vocabulary.maximum(sentence) for sentence in df.TEXT])
-    mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=TSNE(random_state=42))
-    graph = mapper.map(lens, X,
-                       clusterer=DBSCAN(eps=3.5),
-                       cover=km.Cover(n_cubes=14, perc_overlap=0.5))
-
-    kmapper_create_visualization(mapper, graph, df, 'maximum_of_token_vectors')
-
-
-def kmapper_averaged_token_vectors(df: pd.DataFrame, vocabulary: Vocabulary) -> None:
-    X = np.stack([vocabulary.average(sentence) for sentence in df.TEXT])
-    mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=TSNE(random_state=42))
-    graph = mapper.map(lens, X,
-                       clusterer=DBSCAN(eps=2.2),
-                       cover=km.Cover(n_cubes=14, perc_overlap=0.5))
-
-    kmapper_create_visualization(mapper, graph, df, 'averaged_token_vectors')
-
-
-def kmapper_tfidf_pca_projection(df: pd.DataFrame) -> None:
-    X = TfidfVectorizer().fit_transform(df.TEXT).toarray()
-    mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=PCA(n_components=2, random_state=42))
-    graph = mapper.map(lens, X,
-                       clusterer=DBSCAN(eps=2.0),
-                       cover=km.Cover(n_cubes=10, perc_overlap=0.4))
-
-    kmapper_create_visualization(mapper, graph, df, 'tfidf_pca_dbscan')
-
-
-def kmapper_tfidf_pca_projection_with_cosine_distance_and_dbscan_clustering(df: pd.DataFrame) -> None:
-    X = TfidfVectorizer(min_df=3).fit_transform(df.TEXT).toarray()
-
-    mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=PCA(n_components=2, random_state=42), scaler=None)
-    graph = mapper.map(lens, X,
-                       clusterer=DBSCAN(eps=0.55, metric='cosine'),
-                       cover=km.Cover(n_cubes=8, perc_overlap=0.5),
-                       remove_duplicate_nodes=True)
-
-    kmapper_create_visualization(mapper, graph, df, 'tfidf_pca_cosine_dbscan')
-
-
-def kmapper_tfidf_pca_projection_kmeans(df: pd.DataFrame) -> None:
-    X = TfidfVectorizer().fit_transform(df.TEXT).toarray()
-
-    mapper = km.KeplerMapper(verbose=1)
-    lens = mapper.fit_transform(X, projection=PCA(n_components=2, random_state=42),
-                                scaler=None)
-    graph = mapper.map(lens, X,
-                       clusterer=KMeans(n_clusters=3),
-                       cover=km.Cover(n_cubes=10, perc_overlap=0.4))
-
-    kmapper_create_visualization(mapper, graph, df, f'tfidf_pca_kmeans')
+def kmapper_create_from_configuration(df: pd.DataFrame, mapper: km.KeplerMapper, configuration: dict) -> None:
+    lens = mapper.fit_transform(configuration['X'], **configuration['lens_args'])
+    graph = mapper.map(lens, configuration['X'], **configuration['map_args'])
+    kmapper_create_visualization(mapper, graph, df, configuration['name'])
 
 
 def run():
@@ -100,11 +47,74 @@ def run():
     keyword_encoder = LabelEncoder()
     df['KEYWORD_index'] = keyword_encoder.fit_transform(df.KEYWORD)
 
-    kmapper_averaged_token_vectors(df, vocabulary)
-    kmapper_maximum_of_token_vectors(df, vocabulary)
-    kmapper_tfidf_pca_projection(df)
-    kmapper_tfidf_pca_projection_with_cosine_distance_and_dbscan_clustering(df)
-    kmapper_tfidf_pca_projection_kmeans(df)
+    mapper = km.KeplerMapper(verbose=1)
+    X_glove_maximum = np.stack([vocabulary.maximum(sentence) for sentence in df.TEXT])
+    X_glove_average = np.stack([vocabulary.average(sentence) for sentence in df.TEXT])
+    X_tfidf = TfidfVectorizer(min_df=3).fit_transform(df.TEXT).toarray()
+
+    configurations = [
+        {
+            'name': 'kmapper_maximum_of_token_vectors',
+            'X': X_glove_maximum,
+            'lens_args': {
+                'projection': TSNE(random_state=42),
+            },
+            'map_args': {
+                'clusterer': DBSCAN(eps=3.5),
+                'cover': km.Cover(n_cubes=14, perc_overlap=0.5)
+            }
+        },
+        {
+            'name': 'kmapper_averaged_token_vectors',
+            'X': X_glove_average,
+            'lens_args': {
+                'projection': TSNE(random_state=42),
+            },
+            'map_args': {
+                'clusterer': DBSCAN(eps=2.2),
+                'cover': km.Cover(n_cubes=14, perc_overlap=0.5)
+            }
+        },
+        {
+            'name': 'kmapper_tfidf_pca_projection',
+            'X': X_tfidf,
+            'lens_args': {
+                'projection': PCA(n_components=2, random_state=42),
+            },
+            'map_args': {
+                'clusterer': DBSCAN(eps=2.0),
+                'cover': km.Cover(n_cubes=10, perc_overlap=0.4)
+            }
+        },
+        {
+            'name': 'kmapper_tfidf_pca_projection_with_cosine_distance_and_dbscan_clustering',
+            'X': X_tfidf,
+            'lens_args': {
+                'projection': PCA(n_components=2, random_state=42),
+                'scaler': None
+            },
+            'map_args': {
+                'clusterer': DBSCAN(eps=0.55, metric='cosine'),
+                'cover': km.Cover(n_cubes=8, perc_overlap=0.5),
+                'remove_duplicate_nodes': True
+            }
+        },
+        {
+            'name': 'kmapper_tfidf_pca_projection_kmeans',
+            'X': X_tfidf,
+            'lens_args': {
+                'projection': PCA(n_components=2, random_state=42),
+                'scaler': None
+            },
+            'map_args': {
+                'clusterer': KMeans(n_clusters=3),
+                'cover': km.Cover(n_cubes=8, perc_overlap=0.5),
+            }
+        }
+    ]
+
+    for configuration in configurations:
+        kmapper_create_from_configuration(df, mapper, configuration)
 
 
 if __name__ == '__main__':
