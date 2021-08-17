@@ -19,7 +19,7 @@ of F as “time”, then F describes a
 “continuous deformation” of f into g. At time 0 we 
 have the function f, at time 1 we have the function g.
 
-Famous example is the `mug and donut homotopy`. Informally, two continous functions from
+Famous example is the `mug and donut homotopy`. Informally, two continuous functions from
 one topological space to another are called `homotopic`
 if one can be `continuously deformed` into another. Such
 a deformation being called a homotopy between the 
@@ -30,11 +30,11 @@ two functions. [[1]](#1)[[2]](#2)
 ## Topological data analysis (TDA)
 
 `Topological data analysis (TDA)` is an approach to the analysis
-of datasets using techiniques from `topology`. It is usually combined
+of datasets using techniques from `topology`. It is usually combined
 with other forms of analysis such as statistical or geometric
 approaches. [[1]](#1)
 
-Famous TDa algorithm for visualization of high dimensional
+Famous TDA algorithm for visualization of high dimensional
 data is `Mapper`.
 
 ## Mapper - Introduction
@@ -50,7 +50,7 @@ other notions of geometric representation like
 
 ## Mapper - Topological background and motivation
 
-Mapper algorithm is explained in three sections:
+The Mapper algorithm is explained in three sections:
 - Theory required for understanding theory
 behind mapper algorithm;
 - Mapper: Construction of simplical complex (e.g. graph)
@@ -146,26 +146,24 @@ called `path-connected components`.
 
 ### Construction
 
-Assume we have finite covering U = {U<sub>a</sub> | a ∈ A} 
-of space X where A is indexing set (image _construction-1_). 
+Assume we have a finite covering U = {U<sub>a</sub> | a ∈ A} 
+of space X where A is an indexing set (image _construction-1_). 
 
 ![construction-1](docs/images/construction-1.png)
 <p align="center">construction-1: Space X, defined by black border, with finite covering U = {U<sub>1</sub>, U<sub>2</sub>, U<sub>3</sub>, U<sub>4</sub>}</p>
 
-
 We can define nerve of the covering U 
-to be simplical complex N(U) (image _constructin-2_):
+to be a simplical complex N(U) (image _constructin-2_) where:
 - Vertices of N(U) are named by index set A. 
-- Family {a<sub>0</sub>, ..., a<sub>k</sub>} forms k-simplex
+- Family {a<sub>0</sub>, ..., a<sub>k</sub>} forms a k-simplex
 in N(U) (vertices of simplex) if and only if U<sub>a<sub>0</sub></sub> 
 ∩ U<sub>a<sub>1</sub></sub> ∩ ... ∩ U<sub>a<sub>k</sub></sub> is 
-non-empty set. [[3]](#3)
+a non-empty set. [[3]](#3)
 
 ![construction-2](docs/images/construction-2.png)
-<p align="center">construction-2: Nerve of covering N(U) for U </p>
+<p align="center">construction-2: The nerve of covering N(U) for U </p>
 
-
-With defined partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} 
+With defined a partition of unity {Φa: X ⟶ [0, 1] | a ∈ A} 
 (∑<sub>α</sub> Φ<sub>α</sub>(x)=1), 
 we can obtain map from X to N(U):
 - Let T: X ⟶ A, T(x) = {a | x ∈ U<sub>a</sub>}
@@ -177,21 +175,20 @@ barycentric coordinates are (Φ<sub>a<sub>1</sub></sub>(x),
 Φ<sub>a<sub>2</sub></sub>(x), ..., Φ<sub>a<sub>k</sub></sub>(x))
 where a<sub>1</sub>, a<sub>2</sub>, ..., a<sub>k</sub> are values from T(x).
 Continuous map ρ provides kind of partial coordination of X 
-using k-simplex from N(U). [[3]](#3)
+using a k-simplex from N(U). [[3]](#3)
 
-We can form finite covering V with continuous 
+We can form a finite covering V with continuous 
 map f: X ⟶ Z where Z is parameter space. 
-Let parameter space Z be equipped with 
-finite open covering C = {C<sub>b</sub> | b ∈ B} 
-where B is indexing set (image _construction-3_). 
+Let the parameter space Z be equipped with 
+a finite open covering C = {C<sub>b</sub> | b ∈ B} 
+where B is an indexing set (image _construction-3_). 
 
 ![construction-3](docs/images/construction-3.png)
 <p align="center">construction-3: Mapping of covering C to Z </p>
 
-
 Let g be inverse map of f.
 Map g is continuous since f is continuous. 
-Hence, the sets V<sub>b</sub> := g(C<sub>b</sub>) also form finite open 
+Hence, the sets V<sub>b</sub> := g(C<sub>b</sub>) also form a finite open 
 covering of space X (image _construction-4_). 
 We can now decompose Ub into
 path connected components (Vb is union of connected
@@ -228,17 +225,18 @@ Example: [[6]](#6)
 
 ## Mapper - Implementation
 
-Statistical version of mapper is used for implementation.
-Idea is to use clustering to partition space into connected
-components. Assume we have N data points x ∈ X, `filter 
+Statistical version of mapper is used for the implementation.
+Idea is to use some clustering algorithm 
+to partition space into set of connected components. 
+Assume we have N data points x ∈ X, `filter 
 function (lens)` f: X ⟶ R and inter-point distance matrix
 (explicitly or implicitly given some metric). Example:
 image mapper-example: `point cloud`. Algorithm:
-1. **Form cover for range I of function f**:
+1. **Form a cover for range I of function f**:
    - I = f(X);
-   - We can form cover by splitting I into set of intervals S
+   - We can form the cover by splitting I into a set of intervals S
    of equal length which overlap.
-   - Note: We have two parameters here: Size of set S (_n_)
+   - Note: We have two parameters here: Size of the set S (_n_)
    (or length of interval _l_) and percentage overlap 
    between successive intervals (_p_).
    - Example: 
@@ -247,7 +245,7 @@ image mapper-example: `point cloud`. Algorithm:
      * _n_ = 4, _p_ = 10%
      * S = {[0, 0.55], [0.45, 1.05], [0.95, 1.55], [1.45, 2]}
    - Example: image mapper-example: `filter`
-2. **Calcute preimage for each member of cover I:**
+2. **Calcute the preimage for each member of cover I:**
    - X<sub>i</sub> = f<sup>-1</sup>[I<sub>i</sub>]
    - set V = {X<sub>i</sub> | i ∈ {1...n}} forms cover of X
    - Example: image mapper-example: `covering`
@@ -255,13 +253,13 @@ image mapper-example: `point cloud`. Algorithm:
    - Clustering algorithm is arbitrary, but it should
    have some desired characteristics which will be
    noted later.
-   - Each cluster forms vertex
+   - Each cluster forms a vertex
    v<sub>X<sub>i</sub>, C<sub>j</sub></sub> 
-   where X<sub>i</sub> is clustered member of cover and
+   where X<sub>i</sub> is clustered member of the cover and
    C<sub>i, j</sub> is cluster obtained from clustering
-   X<sub>i</sub>
+   X<sub>i</sub>.
    - Example: image mapper-example: `clustering`
-4. **Form simplical complex (or graph):**
+4. **Form a simplical complex (or graph):**
    - In case of forming simplical complex: 
    Set of vertices {v<sub>i<sub>1</sub>, j<sub>1</sub></sub>, 
    v<sub>i<sub>2</sub>, j<sub>2</sub></sub>, ..., 
@@ -270,7 +268,7 @@ image mapper-example: `point cloud`. Algorithm:
    C<sub>i<sub>1</sub>, j<sub>1</sub></sub> ∩ 
    C<sub>i<sub>2</sub>, j<sub>2</sub></sub> ∩ ... ∩ 
    C<sub>i<sub>k</sub>, j<sub>k</sub></sub> ≠ ∅
-   - In case of forming graph (special case: Vertices
+   - In case of forming a graph (special case: Vertices
    v<sub>a, b</sub> and v<sub>c, d</sub> are connected
    if C<sub>a, b</sub> ∩ C<sub>c, d</sub> ≠ ∅
    - Example: image mapper-example: `TDA network`
@@ -282,20 +280,20 @@ image mapper-example: `point cloud`. Algorithm:
 
 Besides choosing a good filter function, finding a good 
 clustering is another important challenge for 
-decent data visualization. Mapper algorithm does
+decent data visualization. The Mapper algorithm does
 not place any conditions on the clustering but
-they are some desired characteristics: [[4]](#4)
-- Clustering should not be restricted to Euclidean space. 
+there are some desired characteristics: [[4]](#4)
+- Clustering should not be restricted to the euclidean space. 
 We can give inter-point distance matrix as an input to
 mapper algorithm.
 - Number of clusters should not be specified beforehand. 
 We can use algorithm that do not require number of clusters
 specified before applying clustering algorithm. Examples:
-DBSCAN, Agglomerative (hierarchical) clustering, ...
+DBSCAN, Agglomerative (hierarchical) clustering with distance threshold, etc...
 
 ## Toy Example - Iris Dataset - 01_iris
 
-`Iris dataset` is well known dataset consisting of three
+`Iris dataset` is a well known dataset consisting of three
 classes of flowers (`setosa`, `versicolor`, `virginica`) 
 with 50 instances for each class. This dataset is associated
 with classification (supervised) task in machine learning. [[9]](#9)
@@ -306,15 +304,15 @@ with classification (supervised) task in machine learning. [[9]](#9)
 ![iris-flowers](docs/images/iris-flowers.png)
 
 Custom mapper algorithm prototype is used to test 
-class separability with 
-visualization. Size of nodes is correlated to number of 
+class separability by using
+visualization. Size of the nodes is correlated to number of 
 instances that node contains. Parameters:
 - Filter function: Projection on first PCA component
 - Clustering: [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
 - Number of intervals: 10
 - overlap percentage: 50%
 
-In image on left we 
+In the image on left we 
 can see nodes colored by `mode` of each cluster (node).
 We can see three "bigger" clusters:
 - `setosa` cluster which is isolated from `versicolor` 
@@ -322,13 +320,13 @@ and `virginica`
 - `virginica` and `versicolor` clusters which are not isolated
 from each other. 
 
-On image on the right we can see entropies of 
+On the image on the right we can see entropies of 
 the nodes and expect classes `virginica` and 
 `versicolor` to mix when applying trained a classification model
 while `setosa` should be easily learned to be separated by
 the model.
 
-We could also make another plot after training model to see
+We could also make another plot after training the model to see
 model certainty i.e. where model is not sure which class
 does the instance belong to.
 
@@ -336,7 +334,7 @@ does the instance belong to.
 
 ### Code
 
-Code can be found in `01_iris` directory. Required packages:
+Code can be found in the `01_iris` directory. Required packages:
 ```
 pandas==1.2.4
 sklearn==0.0
@@ -356,12 +354,14 @@ python main.py (or python3 main.py)
 
 Link to Kaggle competition: [Natural Language Processing with Disaster Tweets](https://www.kaggle.com/c/nlp-getting-started)
 
-Each sample in the train and test set has the following information:
+Each sample in the dataset has the following information:
 - The `text` of a tweet
 - A `keyword` from that tweet (although this may be blank!)
 - The `location` the tweet was sent from (may also be blank)
 
-**Goal**: Predicting whether a given tweet is about a real disaster or not. If so, predict a 1. If not, predict a 0.
+**Goal**: Predicting whether a given tweet is about a real disaster or not. 
+If so, predict a 1. If not, predict a 0. Note: This is the goal of Kaggle
+competition but not our goal here.
 
 **Data**:
 Columns
@@ -373,7 +373,7 @@ Columns
 
 ### Exploratory Data Analysis
 
-Exploratory data analysis od dataset can be found on 
+Exploratory data analysis od the dataset can be found on 
 this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_disaster/eda.ipynb).
 
 ### Results
@@ -381,7 +381,7 @@ this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/02_tweet_di
 Interactive visualization is generated using KeplerMapper API. Results can
 be found on this [link](https://github.com/Robotmurlock/MATF-NI-Mapper/blob/main/docs/disaster_tweets_results).
 
-Result of Mapper algorithm using Glove word embeddings. Configuration:
+Result of The Mapper algorithm using Glove word embeddings. Configuration:
 - Filter function: Projection on two PCA components
 - Clustering: [DBSCAN](https://en.wikipedia.org/wiki/DBSCAN)
 - Number of intervals (cubes): 10x10
@@ -391,7 +391,7 @@ Result of Mapper algorithm using Glove word embeddings. Configuration:
 
 ### Code 
 
-Code can be found in `01_iris` directory. Required packages:
+Code can be found in the `02_tweet_disaster` directory. Required packages:
 ```
 pandas==1.2.4
 sklearn==0.0
