@@ -51,8 +51,7 @@ other notions of geometric representation like
 ## Mapper - Topological background and motivation
 
 The Mapper algorithm is explained in three sections:
-- Theory required for understanding theory
-behind mapper algorithm;
+- Math theory required for mapper algorithm;
 - Mapper: Construction of simplical complex (e.g. graph)
 from cover;
 - Mapper: Multiresolution motivation (level of detail).
